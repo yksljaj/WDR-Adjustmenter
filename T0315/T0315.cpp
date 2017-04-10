@@ -20,28 +20,34 @@ using namespace cimg_library;
 using namespace std;
 
 using namespace System;
-void testfunc();
+void testfunc(char *ptr_to_string);
 
 int main(int argc, char* argv[])
 {
 	//cout << "argc: " << argc << endl;
-	//if (argc > 0)
-	//{
-	//	for (int i = 0 ; i < argc ; i++)
-	//	{
-	//		cout << "argv[" << i << "] = " << argv[i] << endl;;
-	//	}
-	//}
-	testfunc();
+	if (argc > 1)
+	{
+		for (int i=1 ; i < argc; i++)
+		{
+			cout << "argv[" << i << "] = " << argv[i] << endl;
+			printf("0x%08X\n", argv[i]);
+			testfunc(argv[i]);
+		}
+	}
+	
+	//testfunc(&argv[i]);
 	system("pause");
-    return 0;
+	return 0;
 }
 
-void testfunc()
+void testfunc(char *ptr_to_string)
 {
-	
-	char filename[] = "IMG_7626.jpg";
+
+	char *filename = ptr_to_string;
+	//char filename[] = "argv[i]";
 	//char filename[] = "unnamed.jpg";
+
+	//cout << "handled file name: " << &filename[0] << endl;
 
 	CImg<unsigned char> img(filename);
 	CImg<unsigned char> img_orig(filename);
@@ -244,3 +250,4 @@ void testfunc()
 	img.save("adj.jpg");
 
 }
+
