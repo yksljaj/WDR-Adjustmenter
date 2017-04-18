@@ -394,38 +394,38 @@ void testfunc(char *ptr_to_string)
 			img_new.display(main_disp);
 			//img_orig.display(main_disp_orig);
 		} else if (current_left_button_pressed == 1) {
-			//// focus the interest region
-			//int current_x = main_disp_orig.mouse_x()*width / new_window_width;
-			//int current_y = main_disp_orig.mouse_y()*height / desired_window_height;
+			// focus the interest region
+			int current_x = main_disp_orig.mouse_x()*width / new_window_width;
+			int current_y = main_disp_orig.mouse_y()*height / desired_window_height;
 
-			//int left_boundary = min(current_x, prev_x);
-			//int right_boundary = max(current_x, prev_x);
-			//int top_boundary = min(current_y, prev_y);
-			//int bottom_boundary = max(current_y, prev_y);
-			//int stressed_line_width = 5;
-			//// draw the stress line in the image
-			//for (int i = top_boundary - stressed_line_width/2; i <= (bottom_boundary + stressed_line_width / 2) ; i++) {
-			//	for (int j = left_boundary - stressed_line_width / 2; j <= (right_boundary + stressed_line_width / 2) ; j++) {
-			//		// left and right line
-			//		//if (j == left_boundary || j == right_boundary) {
-			//		if (abs(j - left_boundary) < stressed_line_width/2 || abs(j - right_boundary) < stressed_line_width/2) {
+			int left_boundary = min(current_x, prev_x);
+			int right_boundary = max(current_x, prev_x);
+			int top_boundary = min(current_y, prev_y);
+			int bottom_boundary = max(current_y, prev_y);
+			int stressed_line_width = 5;
+			// draw the stress line in the image
+			for (int i = top_boundary - stressed_line_width/2; i <= (bottom_boundary + stressed_line_width / 2) ; i++) {
+				for (int j = left_boundary - stressed_line_width / 2; j <= (right_boundary + stressed_line_width / 2) ; j++) {
+					// left and right line
+					//if (j == left_boundary || j == right_boundary) {
+					if (abs(j - left_boundary) < stressed_line_width/2 || abs(j - right_boundary) < stressed_line_width/2) {
 
-			//			r_display[i*width + j] = 255;
-			//			g_display[i*width + j] = 0;
-			//			b_display[i*width + j] = 0;
-			//		}
-			//		// top and bottom line
-			//		//if (i == top_boundary || i == bottom_boundary) {
-			//		if (abs(i - top_boundary) < stressed_line_width/2 || abs(i - bottom_boundary) < stressed_line_width/2) {
+						r_display[i*width + j] = 255;
+						g_display[i*width + j] = 0;
+						b_display[i*width + j] = 0;
+					}
+					// top and bottom line
+					//if (i == top_boundary || i == bottom_boundary) {
+					if (abs(i - top_boundary) < stressed_line_width/2 || abs(i - bottom_boundary) < stressed_line_width/2) {
 
-			//			r_display[i*width + j] = 255;
-			//			g_display[i*width + j] = 0;
-			//			b_display[i*width + j] = 0;
-			//		}
-			//	}
-			//}
-			//img_display.display(main_disp_orig);
-			//img_display.draw_image(img_orig);
+						r_display[i*width + j] = 255;
+						g_display[i*width + j] = 0;
+						b_display[i*width + j] = 0;
+					}
+				}
+			}
+			img_display.display(main_disp_orig);
+			img_display.draw_image(img_orig);
 		}
 		prev_left_button = current_left_button_pressed;
 
